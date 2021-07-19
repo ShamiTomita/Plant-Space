@@ -1,0 +1,9 @@
+<h1> Edit Plant </h1>
+<form method="post" action="/plants/<%=@plant.id%>">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="<%=@plant.name%>">
+  <label for="character">Character</label>
+  <input type="text" name="character" value="<%=@plant.character%>">
+  <input type="submit" value="submit">
+</form>

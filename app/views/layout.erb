@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Plant Space</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Plant Space</h1>
+    </div>
+  <%=yield%>
+  </body>
+
+
+
+
+
+  <footer>
+    <% if logged_in?%>
+    <a href='/logout'>Logout</a>
+    <%else%>
+    <a></a>
+    <%end%>
+</html>

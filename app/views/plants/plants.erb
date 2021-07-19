@@ -1,0 +1,15 @@
+<h1> Welcome, <%=current_user.username %>
+  <h2> These Are Your Plants! </h2>
+    <h4> you should be so proud... </h4>
+
+<% @plants.each do |plant| %>
+<li>
+  <a href='/plants/<%=plant.id%>'> <%=plant.name%> </a>
+  <%end%>
+</li>
+
+
+
+<h4>
+  <a href='/plants/new'>Add Plants Here</a>
+</h4>
