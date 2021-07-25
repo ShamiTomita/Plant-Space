@@ -1,0 +1,17 @@
+<h1>Account Settings </h1>
+<form method="post" action="/users/<%=@user.slug%>">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="username">Username</label>
+  <input type="text" name="name" value="<%=current_user.username%>"placeholder=<%current_user.username%>>
+<br>
+  <label for="email">Email:</label>
+  <input type="string" name="email" value="<%=current_user.email%>" placeholder=<%current_user.email%>>
+<br>
+  <label for="password">Password:</label>
+  <input type="password" name="password" placeholder=<%current_user.password%>>
+<br>
+  <input type="submit" value="Save">
+</form>
+<% if flash.has?(:notice) %>
+  <%= flash[:notice] %>
+<% end %>

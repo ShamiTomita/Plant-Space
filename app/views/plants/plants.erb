@@ -1,4 +1,7 @@
-<h1> Welcome, <%=current_user.username %>
+
+<% if flash.has?(:notice) %>
+  <%= flash[:notice] %>
+<% end %>
   <h2> These Are Your Plants! </h2>
     <h4> you should be so proud... </h4>
 
@@ -10,6 +13,8 @@
 
 
 
+
 <h4>
   <a href='/plants/new'>Add Plants Here</a>
+
 </h4>

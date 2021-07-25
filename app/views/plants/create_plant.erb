@@ -1,3 +1,7 @@
+<% if flash.has?(:notice) %>
+  <%= flash[:notice] %>
+<% end %>
+
 <h2>Add a plant</h2>
 <form action="/plants" method="POST">
   <p>Name: <input type="text" name="name"></p>

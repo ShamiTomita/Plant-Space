@@ -7,3 +7,6 @@
   <input type="text" name="character" value="<%=@plant.character%>">
   <input type="submit" value="submit">
 </form>
+<% if flash.has?(:notice) %>
+  <%= flash[:notice] %>
+<% end %>

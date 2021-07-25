@@ -2,12 +2,18 @@ class PlantsController < ApplicationController
 
   get '/plants' do
     if logged_in?
-      @plants = @current_user.plants.all
-      puts "hi"
-      erb :'plants/plants'
+      if !current_user.plants.empty?
+        @plants = current_user.plants.all
+        puts "hi"
+        erb :'plants/plants'
+      else
+        flash[:notice] = "Please Create a plant to get started"
+        erb :'plants/create_plant'
+      end
     else
       redirect to '/login'
     end
+
   end
 
   get '/plants/new' do
@@ -61,10 +67,11 @@ class PlantsController < ApplicationController
       if @plant && @plant.user == current_user
         @plant.delete
       end
-      redirect to '/plants/plants'
+        redirect to '/plants'
+        flash[:notice] = "Plant deleted"
     else
-      redirectto '/login'
-      end
+      redirect to '/login'
+    end
   end
 
 

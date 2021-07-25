@@ -2,3 +2,6 @@
   Logout?
   <input type="submit" name="logout" >
 </form>
+<% if flash.has?(:notice) %>
+  <%= flash[:notice] %>
+<% end %>

@@ -12,3 +12,6 @@ Sign Up to start your Digitla Horticulture Journey TODAY
   <br>
   <input class="btn btn-primary" type="submit">
   </form>
+  <% if flash.has?(:notice) %>
+    <%= flash[:notice] %>
+  <% end %>
