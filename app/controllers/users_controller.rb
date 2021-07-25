@@ -15,7 +15,11 @@ class UsersController < ApplicationController
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to 'plants/plants'
+      if @user.plants.empty?
+        redirect to 'plants/new'
+      else
+        redirect to 'plants/plants'
+      end
     else
       redirect to '/signup'
     end
@@ -42,7 +46,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if logged_in?
       session.destroy
-      redirect to '/'
+      redirect to 'login'
     else
       redirect to '/'
     end
