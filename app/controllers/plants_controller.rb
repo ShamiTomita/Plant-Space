@@ -7,7 +7,6 @@ class PlantsController < ApplicationController
         puts "hi"
         erb :'plants/plants'
       else
-        flash[:notice] = "Please Create a plant to get started"
         erb :'plants/create_plant'
       end
     else
