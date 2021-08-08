@@ -2,7 +2,9 @@
 <p><%= current_user.username %>'s plant:</p>
 <p>Plant's Name: <%= @plant.name%> </p>
 <p>Character: <%= @plant.character%> </p>
+
 <br>
+
 
 
 
@@ -11,7 +13,7 @@
 <br>
 <a href='/plants/new'>New Plant</a>
 <br>
-<a href='/plants'>All Plants</a>
+<a href='/garden'>Back to Garden</a>
 
 <form method="POST" action="/plants/<%=@plant.id%>/delete">
   <input id="hidden", type="hidden" name="_method" value="DELETE">

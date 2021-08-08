@@ -2,7 +2,7 @@ class PlantsController < ApplicationController
 
   get '/plants' do
     if logged_in?
-      if !current_user.plants.empty?
+      if !current_user.garden.plants.empty?
         @plants = current_user.plants.all
         puts "hi"
         erb :'plants/plants'
@@ -26,11 +26,12 @@ class PlantsController < ApplicationController
   post '/plants' do
     if logged_in?
       if params[:character] != "" && params[:name] != ""
-        @plant = current_user.plants.build(name: params[:name], character: params[:character])
-
+        @plant = current_user.garden.plants.build(name: params[:name], garden_id: params[:garden_id], character: params[:character])
+        @plant.garden_id = current_user.garden.id
         @plant.save
-        redirect to "/plants/#{@plant.id}"
+        redirect to "/garden"
       else
+        flash[:notice] = "Warning:Please Fill In All Areas"
         redirect to "plants/new"
       end
     else
@@ -50,7 +51,7 @@ class PlantsController < ApplicationController
   get '/plants/:id/edit' do
     if logged_in?
       @plant = Plant.find_by_id(params[:id])
-      if @plant && @plant.user == current_user
+      if @plant && @plant.garden.user == current_user
       erb:'/plants/edit_plant'
     else
       redirect to '/plants'
@@ -63,10 +64,10 @@ class PlantsController < ApplicationController
   delete '/plants/:id/delete' do
     if logged_in?
       @plant = Plant.find_by_id(params[:id])
-      if @plant && @plant.user == current_user
+      if @plant && @plant.garden.user == current_user
         @plant.delete
       end
-        redirect to '/plants'
+        redirect to '/garden'
         flash[:notice] = "Plant deleted"
     else
       redirect to '/login'
@@ -80,7 +81,7 @@ class PlantsController < ApplicationController
         redirect to ("/plants/#{params[:id]}/edit")
       else
         @plant = Plant.find_by_id(params[:id])
-        if @plant && @plant.user == current_user
+        if @plant && @plant.garden.user == current_user
           if @plant.update(name: params[:name], character: params[:character])
             redirect to ("/plants/#{@plant.id}")
           else

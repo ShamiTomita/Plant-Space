@@ -1,0 +1,10 @@
+Your Garden
+<p>Garden's Name: <%= current_user.garden.name%> </p>
+<p>Plants:</p>
+      <% @plants.each do |plant|%>
+          <ul>
+          <li><a href='/plants/<%=plant.id%>'> <%=plant.name%></a> </li>
+          <p>Character: <%= plant.character %></p>
+          </ul>
+
+<%end%>

@@ -12,6 +12,8 @@ gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
+gem 'carrierwave', '~> 2.0'
+
 group :test do
   gem 'rspec'
   gem 'capybara'

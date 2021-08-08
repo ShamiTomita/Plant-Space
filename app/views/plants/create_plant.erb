@@ -3,11 +3,12 @@
 <% end %>
 
 <h2>Add a plant</h2>
-<form action="/plants" method="POST">
+<form action="/plants" method="POST" enctype="multipart/form-data">
   <p>Name: <input type="text" name="name"></p>
   <br>
   <label for="character">Character:</label>
   <input type="text" name="character" id="character">
   <br>
+
   <input class="btn btn-primary" type="submit" value="submit">
 </form>

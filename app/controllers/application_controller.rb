@@ -12,6 +12,7 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :index
   end
+
   helpers do
      def logged_in?
        !!current_user
@@ -19,13 +20,6 @@ class ApplicationController < Sinatra::Base
 
      def current_user
        @current_user ||= User.find(session[:user_id]) if session[:user_id]
-     end
-
-     def authentication_required
-       if !logged_in?
-         flash[:notice] = "You must be logged in."
-         redirect '/'
-       end
      end
    end
 

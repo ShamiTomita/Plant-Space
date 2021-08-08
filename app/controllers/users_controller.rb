@@ -7,8 +7,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/create_user'
     else
-      redirect to '/plants'
-
+      redirect to '/garden'
     end
   end
 
@@ -17,12 +16,8 @@ class UsersController < ApplicationController
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      if @user.plants.empty?
-        flash[:notice] = "Thanks for signing up! Please Create your first plant to get started"
-        redirect to 'plants/new'
-      else
-        redirect to 'plants/plants'
-      end
+      flash[:notice] = "Thanks for signing up! Please name your garden and then create your first plant to get started"
+        redirect to '/garden'
     else
       redirect to '/signup'
     end
@@ -33,7 +28,7 @@ class UsersController < ApplicationController
       erb :'users/login'
     else
       flash[:notice] = "Logged in!"
-      redirect to '/plants'
+      redirect to '/garden'
     end
   end
 
@@ -42,7 +37,7 @@ class UsersController < ApplicationController
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         flash[:notice] = "Welcome back #{user.username}!"
-        redirect to '/plants'
+        redirect to '/garden'
       else
         flash[:notice] = "Please Sign up!"
         redirect to '/signup'
@@ -53,7 +48,7 @@ class UsersController < ApplicationController
     if logged_in?
       session.destroy
       flash[:notice] = "You're Logged Out!"
-      redirect to 'login'
+      redirect to '/'
     else
       redirect to '/'
     end
@@ -82,9 +77,9 @@ class UsersController < ApplicationController
         @user = User.find_by_slug(params[:slug])
         if @user == current_user
           if @user.update(username: params[:username], email: params[:email], password: params[:password])
-            current_user.plants == @user.plants
+            current_user.garden == @user.garden
             @user.save
-            redirect to ("/plants/plants")
+            redirect to ("/garden")
           else
             redirect to ("/users/:slug/edit")
           end
