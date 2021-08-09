@@ -53,55 +53,34 @@ class GardenController < ApplicationController
 #    end
 #  end
 
-  get '/garden/:id/edit' do
+  get '/garden/edit' do
     if logged_in?
-      @garden = Garden.find_by_id(params[:id])
-      if @garden && @garden.user == current_user
+      @garden = current_user.garden
       erb:'/garden/edit_garden'
     else
-      redirect to '/plants'
-    end
-    else
-      redirect to '/login'
+      redirect to '/'
     end
   end
 
-  delete '/garden/:id/delete' do
+
+
+  patch '/garden' do
     if logged_in?
-      @garden = Garden.find_by_id(params[:id])
-      if @garden && @garden.user == current_user
-        @garden.delete
+     if params[:name] != ""
+       @garden = current_user.garden
+        if  @garden.update(name: params[:name])
+            @garden.save
+            redirect to ("/garden")
+        else
+         redirect to ("/garden/edit")
+        end
+     else
+      redirect to ("/garden/edit")
       end
-        redirect to '/garden/new'
-        flash[:notice] = "Garden deleted"
     else
       redirect to '/login'
+      end
     end
-  end
-
-
-#  patch '/plants/:id' do
-#    if logged_in?
-#      if params[:name] == ""
-#        redirect to ("/garden/#{params[:id]}/edit")
-#      else
-#        @garden = Garden.find_by_id(params[:id])
-#        if @garden && @garden.user == current_user
-#          if @garden.update(name: params[:name])
-#            redirect to ("/garden/#{@garden.id}")
-#          else
-#            redirect to ("/garden/#{params[:id]}/edit")
-#          end
-#        else
-#          redirect to "/garden/#{@garden.id}/edit"
-#        end
-#      end
-#    else
-#      redirect to '/login'
-#    end
-#  end
-#
-
 
 
 end

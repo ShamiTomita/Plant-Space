@@ -1,8 +1,15 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Plant Space</title>
-  </head>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+<title>Plant Space</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="/stylesheets/main.css?<%= Time.now.strftime("%d-%m-%Y-%k-%M") %>" />
+</head>
   <body>
 
     <div class="container">
@@ -28,18 +35,15 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
   <footer>
     <% if logged_in?%>
     <a href='/logout'>Logout</a> |*****|
-    <a href='/plants/new'>Add Plant</a>
+    <a href='/plants/new'>Add Plant</a> |*****|
+    <a href='/garden/edit'>Edit Garden</a>
     <%else%>
-    Moop
+    Please Log In
     <%end%>
-
+  </footer>
 
 </html>

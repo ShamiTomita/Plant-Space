@@ -11,15 +11,12 @@
 
 <a href="/plants/<%=@plant.id%>/edit">Edit Plant </a>
 <br>
-<a href='/plants/new'>New Plant</a>
-<br>
-<a href='/garden'>Back to Garden</a>
-
 <form method="POST" action="/plants/<%=@plant.id%>/delete">
   <input id="hidden", type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Plant">
 </form>
-
+<br>
+<a href='/garden'>Back to Garden</a>
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>

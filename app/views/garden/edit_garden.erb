@@ -1,0 +1,7 @@
+<h3> Edit Garden </h3>
+<form method="post" action="/garden">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="<%=@garden.name%>">
+  <input type="submit" value="submit">
+</form>
