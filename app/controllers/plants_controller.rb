@@ -77,7 +77,7 @@ class PlantsController < ApplicationController
 
   patch '/plants/:id' do
     if logged_in?
-      if params[:character] == "" && params[:name] == ""
+      if params[:character] == "" || params[:name] == ""
         redirect to ("/plants/#{params[:id]}/edit")
       else
         @plant = Plant.find_by_id(params[:id])

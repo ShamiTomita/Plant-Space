@@ -12,6 +12,7 @@ class GardenController < ApplicationController
         erb :'garden/show_garden'
       end
     else
+      flash[:notice] = "Please Login"
       redirect to '/login'
     end
 
@@ -37,21 +38,13 @@ class GardenController < ApplicationController
           erb :'garden/show_garden'
         end
       else
-        redirect to '/garden/new'
+        flash[:notice] = "!!!Please name your garden!!!"
+        redirect to '/garden'
       end
     else
       redirect to '/login'
     end
   end
-
-#  get '/garden/:id' do
-#    if logged_in?
-#      @garden = Garden.find_by_id(params[:id])
-#      erb :'garden/show_garden'
-#    else
-#      redirect to '/login'
-#    end
-#  end
 
   get '/garden/edit' do
     if logged_in?

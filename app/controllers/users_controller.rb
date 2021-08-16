@@ -12,21 +12,25 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] != "" && params[:password] != "" && params[:email] != "" && params[:username] && params[:username]
+    if params[:username] != "" && params[:password] != "" && params[:email] != "" && params[:email].include?("@") && params[:email].include?(".")
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-      @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Thanks for signing up! Please name your garden and then create your first plant to get started"
-        redirect to '/garden'
-    else
-      redirect to '/signup'
-    end
+        if @user.save
+          session[:user_id] = @user.id
+          flash[:notice] = "Thanks for signing up! Please name your garden and then create your first plant to get started"
+          redirect to '/garden'
+        else
+          flash[:notice] = "Username or Email already exist, please choose different ones"
+          redirect to '/signup'
+        end
+      else
+        flash[:notice] = "Please fill in all areas correctly"
+        redirect to '/signup'
+      end
   end
 
   get '/login' do
     if !logged_in?
-      flash[:notice] = "Please Fill In Data Correctly Again"
-      redirect to '/signup'
+      erb :'users/login'
     else
       flash[:notice] = "Logged in!"
       redirect to '/garden'
