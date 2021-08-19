@@ -17,10 +17,11 @@ PlantSpace is a platform meant for individuals who want to organize their real l
 
 ## Usage
 To use this app, clone this program, run
-$ rake db:migrate
+  $ rake db:migrate
 
 and then run
-$ shotgun
+
+  $ shotgun
 
 Enjoy digitizing your little green friends <3
 ## Development
