@@ -5,9 +5,9 @@
 
 PlantSpace is a platform meant for individuals who want to organize their real life plants into a digital garden.
 
-[Watch this video to understand how this app works!]()
+[Watch this video to understand how this app works!](https://www.youtube.com/watch?v=PXXv8-Yds8E)
 
-[Blog Post about this app]()
+[Blog Post about this app](https://shamiscodingblog.tumblr.com/)
 
 ## Built With
 
