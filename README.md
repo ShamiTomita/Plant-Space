@@ -16,8 +16,13 @@ PlantSpace is a platform meant for individuals who want to organize their real l
 * [SQLITE3](https://www.sqlite.org/) - The relational database used for development
 
 ## Usage
+To use this app, clone this program, run
+$ rake db:migrate
 
+and then run
+$ shotgun
 
+Enjoy digitizing your little green friends <3
 ## Development
 
 Try this app in your local environment, clone and run following command inside this project's directory
