@@ -17,30 +17,14 @@ PlantSpace is a platform meant for individuals who want to organize their real l
 
 ## Usage
 To use this app, clone this program, run
-  $ rake db:migrate
+
+    $ rake db:migrate
 
 and then run
 
-  $ shotgun
+    $ shotgun
 
 Enjoy digitizing your little green friends <3
-## Development
-
-Try this app in your local environment, clone and run following command inside this project's directory
-
-    $ bundle && bundle exec rake db:schema:load
-
-Start up local server
-
-    $ bundle exec shotgun
-
-For interactive console
-
-    $ bundle exec rake console
-
-OR
-
-    $ bundle exec tux
 
 ## Future Work
 Implement a photo uploading mechanism so users and their plants can be digitally represented.
